@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Weather.css";
 
-const weather = () => {
+const Weather = () => {
+  const [metar, setMetar] = useState();
+  const [taf, setTaf] = useState();
+
+  useEffect(() => {
+    Promise.all([
+      fetch('http://localhost:5000/metar?icao=licb'),
+      fetch('http://localhost:5000/taf?icao=licb'),
+    ])
+      .then(([metarResponse, tafResponse]) =>
+        Promise.all([metarResponse.text(), tafResponse.text()])
+      )
+      .then(([metarData, tafData]) => {
+        setMetar(metarData);
+        setTaf(tafData);
+      });
+  }, []);
+
   return (
     <section id="weather">
       <h5>
@@ -15,7 +32,7 @@ const weather = () => {
           <div className="weather_content">
             <article className="weather_details">
               <div>
-                <h4>LMML 271715Z VRB01KT CAVOK 15/12 Q1012 NOSIG</h4>
+                <h4>{metar}</h4>
                 <small className="text-light"></small>
               </div>
             </article>
@@ -27,10 +44,8 @@ const weather = () => {
           <div className="weather_content">
             <article className="weather_details">
               <div>
-                <h4>
-                  TAF LMML 271700Z 2718/2818 24005KT CAVOK PROB30 2718/2807 8000
-                </h4>
-                <small className="text-light">BECMG 2721/2724 15010KT</small>
+                <h4>{taf}</h4>
+                <small className="text-light"></small>
               </div>
             </article>
           </div>
@@ -41,4 +56,4 @@ const weather = () => {
   );
 };
 
-export default weather;
+export default Weather;
