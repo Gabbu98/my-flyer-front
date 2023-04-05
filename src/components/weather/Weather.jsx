@@ -7,8 +7,8 @@ const Weather = () => {
 
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:5000/metar?icao=licb'),
-      fetch('http://localhost:5000/taf?icao=licb'),
+      fetch('https://my-flyer-api-production.up.railway.app/metars/licb'),
+      fetch('https://my-flyer-api-production.up.railway.app/tafs/licb'),
     ])
       .then(([metarResponse, tafResponse]) =>
         Promise.all([metarResponse.text(), tafResponse.text()])
