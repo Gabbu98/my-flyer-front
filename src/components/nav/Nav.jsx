@@ -9,9 +9,9 @@ const Nav = () => {
   return (
     <nav>
       <a
-        href="#"
-        onClick={() => setActiveNav("#")}
-        className={activeNav === "#" ? "active" : ""}
+        href="/#"
+        onClick={() => setActiveNav("/#")}
+        className={activeNav === "/#" ? "active" : ""}
       >
         <BiHome />
       </a>

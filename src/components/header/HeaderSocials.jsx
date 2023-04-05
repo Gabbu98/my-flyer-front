@@ -4,10 +4,10 @@ import { BsLinkedin, BsFacebook } from "react-icons/bs";
 const HeaderSocials = () => {
   return (
     <div className="header_socials">
-      <a href="https://linkedin.com" target="_blank">
+      <a href="https://linkedin.com">
         <BsLinkedin></BsLinkedin>
       </a>
-      <a href="https://facebook.com" target="_blank">
+      <a href="https://facebook.com">
         <BsFacebook />
       </a>
     </div>
