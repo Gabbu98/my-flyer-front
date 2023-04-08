@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import IcaoMenu from "./IcaoMenu";
 import "./Weather.css";
 
 const Weather = () => {
@@ -26,6 +27,8 @@ const Weather = () => {
         wishing you were on the ground
       </h5>
       <h2>Weather</h2>
+      <IcaoMenu/>
+      
       <div className="container weather_container">
         <div className="metar">
           <h3>Metar</h3>
