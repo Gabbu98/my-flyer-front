@@ -20,6 +20,22 @@ const Weather = () => {
       });
   }, []);
 
+  const handleToUpdate = (event) => {
+    console.log(event.target.text);
+    // GET request using fetch with error handling
+    Promise.all([
+      fetch('https://my-flyer-api-production.up.railway.app/metars/'.concat(event.target.text)),
+      fetch('https://my-flyer-api-production.up.railway.app/tafs/'.concat(event.target.text)),
+    ])
+      .then(([metarResponse, tafResponse]) =>
+        Promise.all([metarResponse.text(), tafResponse.text()])
+      )
+      .then(([metarData, tafData]) => {
+        setMetar(metarData);
+        setTaf(tafData);
+      });
+  };
+
   return (
     <section id="weather">
       <h5>
@@ -27,7 +43,7 @@ const Weather = () => {
         wishing you were on the ground
       </h5>
       <h2>Weather</h2>
-      <IcaoMenu/>
+      <IcaoMenu handleToUpdate = {handleToUpdate}/>
       
       <div className="container weather_container">
         <div className="metar">

@@ -4,8 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import "./IcaoMenu.css";
 
-
-function BasicExample() {
+function IcaoMenu(props) {
     // The forwardRef is important!!
     // Dropdown needs access to the DOM node in order to position the Menu
     const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -14,7 +13,7 @@ function BasicExample() {
             ref={ref}
             onClick={(e) => {
                 e.preventDefault();
-                onClick(e);
+                onClick(e);   
             }}
         >
             {children}
@@ -52,6 +51,7 @@ function BasicExample() {
             );
         },
     );
+
     return (
         <div class="container">
             <button className="btn btn-primary">
@@ -61,12 +61,12 @@ function BasicExample() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu as={CustomMenu}>
-                        <Dropdown.Item eventKey="1">LMML</Dropdown.Item>
-                        <Dropdown.Item eventKey="2">LICB</Dropdown.Item>
-                        <Dropdown.Item eventKey="3" active>
+                        <Dropdown.Item onClick={(e) =>props.handleToUpdate(e)} eventKey="1">LMML</Dropdown.Item>
+                        <Dropdown.Item onClick={(e) =>props.handleToUpdate(e)} eventKey="2">LICB</Dropdown.Item>
+                        <Dropdown.Item onClick={(e) =>props.handleToUpdate(e)} eventKey="3">
                             LICC
                         </Dropdown.Item>
-                        <Dropdown.Item eventKey="1">LICR</Dropdown.Item>
+                        <Dropdown.Item onClick={(e) =>props.handleToUpdate(e)} eventKey="1">LICR</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 </button>
@@ -78,4 +78,4 @@ function BasicExample() {
     );
 }
 
-export default BasicExample;
+export default IcaoMenu;
