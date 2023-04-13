@@ -7,6 +7,7 @@ const Weather = () => {
   const [taf, setTaf] = useState();
 
   useEffect(() => {
+
     Promise.all([
       fetch('https://my-flyer-api-production.up.railway.app/metars/licb'),
       fetch('https://my-flyer-api-production.up.railway.app/tafs/licb'),
@@ -20,12 +21,12 @@ const Weather = () => {
       });
   }, []);
 
-  const handleToUpdate = (event) => {
-    console.log(event.target.text);
+  const handleToUpdate = (icao) => {
+    console.log(icao);
     // GET request using fetch with error handling
     Promise.all([
-      fetch('https://my-flyer-api-production.up.railway.app/metars/'.concat(event.target.text)),
-      fetch('https://my-flyer-api-production.up.railway.app/tafs/'.concat(event.target.text)),
+      fetch('https://my-flyer-api-production.up.railway.app/metars/'.concat(icao)),
+      fetch('https://my-flyer-api-production.up.railway.app/tafs/'.concat(icao)),
     ])
       .then(([metarResponse, tafResponse]) =>
         Promise.all([metarResponse.text(), tafResponse.text()])
