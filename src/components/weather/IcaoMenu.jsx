@@ -7,17 +7,15 @@ function IcaoMenu(props) {
     return (
         <div class="container">
             <form>
-                <label>Input ICAO Code:
-                    <input
-                        type="text"
-                        value={icao}
-                        onChange={(e) => setIcao(e.target.value)}
-                    />
-                </label>
+                <div class="form-row">
+                    <div class="col_2">
+                        <input type="text" className="form_control" placeholder="Icao Code" value={icao} onChange={(e) => setIcao(e.target.value)}></input>
+                    </div>
+                    <div class="col_1">
+                        <button className="submit_btn" onClick={() => props.handleToUpdate(icao)}>Submit</button>
+                    </div>
+                </div>
             </form>
-            <button onClick={() => props.handleToUpdate(icao)} className="btn btn-primary">
-                Submit
-            </button>
         </div>
     );
 }
