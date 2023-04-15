@@ -12,7 +12,7 @@ function IcaoMenu(props) {
                         <input type="text" className="form_control" placeholder="Icao Code" value={icao} onChange={(e) => setIcao(e.target.value)}></input>
                     </div>
                     <div class="col_1">
-                        <button className="submit_btn" onClick={() => props.handleToUpdate(icao)}>Submit</button>
+                        <button type="button" className="submit_btn" onClick={() => props.handleToUpdate(icao)}>Submit</button>
                     </div>
                 </div>
             </form>
