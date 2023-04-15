@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import IcaoMenu from "./IcaoMenu";
 import "./Weather.css";
 
 const Weather = () => {
@@ -6,6 +7,7 @@ const Weather = () => {
   const [taf, setTaf] = useState();
 
   useEffect(() => {
+
     Promise.all([
       fetch('https://my-flyer-api-production.up.railway.app/metars/licb'),
       fetch('https://my-flyer-api-production.up.railway.app/tafs/licb'),
@@ -19,6 +21,22 @@ const Weather = () => {
       });
   }, []);
 
+  const updateWeather = (icao) => {
+    console.log(icao);
+    // GET request using fetch with error handling
+    Promise.all([
+      fetch('https://my-flyer-api-production.up.railway.app/metars/'.concat(icao)),
+      fetch('https://my-flyer-api-production.up.railway.app/tafs/'.concat(icao)),
+    ])
+      .then(([metarResponse, tafResponse]) =>
+        Promise.all([metarResponse.text(), tafResponse.text()])
+      )
+      .then(([metarData, tafData]) => {
+        setMetar(metarData);
+        setTaf(tafData);
+      });
+  };
+
   return (
     <section id="weather">
       <h5>
@@ -26,6 +44,8 @@ const Weather = () => {
         wishing you were on the ground
       </h5>
       <h2>Weather</h2>
+      <IcaoMenu updateWeather = {updateWeather}/>
+      
       <div className="container weather_container">
         <div className="metar">
           <h3>Metar</h3>
