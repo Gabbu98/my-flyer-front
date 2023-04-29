@@ -9,8 +9,8 @@ const Weather = () => {
   useEffect(() => {
 
     Promise.all([
-      fetch('https://my-flyer-api-production.up.railway.app/metars/licb'),
-      fetch('https://my-flyer-api-production.up.railway.app/tafs/licb'),
+      fetch('https://my-flyer-api.onrender.com/metars/licb'),
+      fetch('https://my-flyer-api.onrender.com/tafs/licb'),
     ])
       .then(([metarResponse, tafResponse]) =>
         Promise.all([metarResponse.text(), tafResponse.text()])
@@ -25,8 +25,8 @@ const Weather = () => {
     console.log(icao);
     // GET request using fetch with error handling
     Promise.all([
-      fetch('https://my-flyer-api-production.up.railway.app/metars/'.concat(icao)),
-      fetch('https://my-flyer-api-production.up.railway.app/tafs/'.concat(icao)),
+      fetch('https://my-flyer-api.onrender.com/metars/'.concat(icao)),
+      fetch('https://my-flyer-api.onrender.com/tafs/'.concat(icao)),
     ])
       .then(([metarResponse, tafResponse]) =>
         Promise.all([metarResponse.text(), tafResponse.text()])
